@@ -1,0 +1,6 @@
+debug.log
+*.DS_Store
+*.cmd
+node_modules
+dist
+build
