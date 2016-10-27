@@ -30,7 +30,7 @@ class CuttingPass extends WAGNER.Pass{
 		this.params.mapResolution  = new THREE.Vector2(this.size,this.size)
 		this.params.direction = new THREE.Vector2(0,1)
 		this.params.intensity = .3
-		this.constantTime = 0
+		this.constantTime = 0.01
 		this.shader.uniforms.cuttingMap.value = this.texture
 		// this.debug()
 		this.state = 'standby'

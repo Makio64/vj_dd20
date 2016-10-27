@@ -1,6 +1,7 @@
 const stage3d = require( "mnf/core/stage3d" )
 const stage = require( "mnf/core/stage" )
 const gui = require( "mnf/utils/gui" )
+const keyboard = require( "mnf/utils/keyboard" )
 const audio = require( 'mnf/core/audio' )
 const random = require( 'mnf/utils/random' )
 
@@ -22,6 +23,7 @@ class Camera {
 		this.radiusMax = 400
 		this.phiSpeedMax = 0.0
 		this.thetaSpeedMax = 0.0
+		keyboard.down.add(this.onKey)
 	}
 
 	headZoom(){
@@ -223,6 +225,59 @@ class Camera {
 		guiCamera.add(this,'circleMiddlePeace')
 		guiCamera.open()
 	}
+
+	onKey = (e)=>{
+		switch(e){
+			case 65:{
+				this.headZoom()
+				break
+			}
+			case 83:{//w
+				this.headMiddle()
+				break
+			}
+			case 68:{//e
+				this.treeMiddleViolent()
+				break
+			}
+			case 70:{//e
+				this.treeMiddlePeace()
+				break
+			}
+			case 71:{//e
+				this.treeFarViolent()
+				break
+			}
+			case 72:{//e
+				this.treeFarPeace()
+				break
+			}
+			case 74:{//e
+				this.smileMiddleViolent()
+				break
+			}
+			case 75:{//e
+				this.titleMiddleViolent()
+				break
+			}
+			case 76:{//e
+				this.circleMiddlePeace()
+				break
+			}
+			// case 73:{//e
+			// 	break
+			// }
+			// case 90:{//e
+			// 	this.sky.randomColorTween()
+			// 	break
+			// }
+			// case 88:{//e
+			// 	Scenes.line.mesh.geometry.updateColor()
+			// 	break
+			// }
+		}
+	}
+
 }
 
 module.exports = new Camera()

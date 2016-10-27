@@ -32,10 +32,10 @@ class TitleScene extends Scene {
 		this.createTreePath()
 		this.createLineEye()
 		this.createHeadPath()
-		this.state = 'head'
+		this.state = 'smile'
 		this.time = 0
-		this.multiplicator = .5
-		this.lineWidth = .5
+		this.multiplicator = 0.1
+		this.lineWidth = .2
 		this.isPaused = false
 		this.bySegmentTarget = PathLine.config.bySegment
 		this.easingTarget = PathLine.config.easing
@@ -358,7 +358,6 @@ class TitleScene extends Scene {
 		f.add(this,'toHead')
 		f.add(this,'isPaused')
 		f.add(this,'reset')
-		// f.open()
 	}
 
 }

@@ -5,27 +5,31 @@ const gui = require('mnf/utils/gui')
 class Sky extends THREE.Group {
 
   constructor(){
-    const geometry = new THREE.IcosahedronBufferGeometry(1,3)
-    const material = new THREE.ShaderMaterial({
-            vertexShader: require('./Sky.vs'),
-            fragmentShader: require('./Sky.fs'),
-            uniforms: {
+	const geometry = new THREE.IcosahedronBufferGeometry(1,3)
+	const material = new THREE.ShaderMaterial({
+			vertexShader: require('./Sky.vs'),
+			fragmentShader: require('./Sky.fs'),
+			uniforms: {
 				color1:{type:'v3', value:new THREE.Color(0xFFFFFF*Math.random())},
 				color2:{type:'v3', value:new THREE.Color(0xFFFFFF*Math.random())},
 				color3:{type:'v3', value:new THREE.Color(0xFFFFFF*Math.random())},
-				brightness:{type:'f',value:.6}
+				brightness:{type:'f',value:0}
 			},
-            side:THREE.BackSide
-    });
+			side:THREE.BackSide
+	});
 	super()
 	this.material = material
-    this.add(new THREE.Mesh(geometry,material))
+	this.add(new THREE.Mesh(geometry,material))
 	// let wireframe = new THREE.Mesh(geometry,material.clone())
 	//  	wireframe.scale.multiplyScalar(1.1)
 	// 	wireframe.material.wireframe = true
 	// this.add(wireframe)
 	this.scale.multiplyScalar(10000)
 	this.createGUI()
+  }
+
+  start(){
+	  TweenMax.to(this.material.uniforms.brightness,3,{value:.6})
   }
 
   randomColor(){
@@ -53,7 +57,7 @@ class Sky extends THREE.Group {
 	  f.add(this,'randomColor')
 	  f.add(this,'randomColorTween')
 	  f.add(this.material.uniforms.brightness,'value',0,1.2)
-	//   f.open()	
+	//   f.open()
   }
 
 }

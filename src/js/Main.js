@@ -9,6 +9,8 @@ const postprocess   = require('vjing/postprocess/manager')
 const audio 		= require('mnf/core/audio')
 const camera		= require('vjing/camera.js')
 const lights		= require('vjing/lights.js')
+const keyboard 		= require('mnf/utils/keyboard.js')
+
 const Sky = require('vjing/obj/sky/Sky')
 
 class Main {
@@ -73,7 +75,56 @@ class Main {
 				// Scenes.line.transitionIn()
 				// Scenes.head.transitionIn()
 				this.createGUI()
+				keyboard.down.add(this.onKey)
 			}})
+		}
+	}
+
+	onKey = (e)=>{
+		console.log(e)
+		switch(e){
+			case 81:{
+				this.sky.start()
+				break
+			}
+			case 87:{//w
+				if(!this.showLine){
+					this.showLine = true
+					Scenes.line.transitionIn()
+				}
+				break
+			}
+			case 69:{//e
+				Scenes.line.toSmile()
+				break
+			}
+			case 82:{//e
+				Scenes.line.tocircle()
+				break
+			}
+			case 84:{//e
+				Scenes.line.toTitle()
+				break
+			}
+			case 89:{//e
+				Scenes.line.toTree()
+				break
+			}
+			case 85:{//e
+
+				break
+			}
+			case 73:{//e
+				break
+			}
+			case 90:{//e
+				this.sky.randomColorTween()
+				break
+			}
+			case 88:{//e
+				Scenes.line.mesh.geometry.updateColor()
+				break
+			}
 		}
 	}
 

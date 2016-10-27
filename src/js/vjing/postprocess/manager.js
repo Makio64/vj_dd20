@@ -5,6 +5,7 @@ const GlitchPass = require('./glitch/GlitchPass')
 const CuttingPass = require('./cutting/CuttingPass')
 const VjingPass = require('./vjing/VjingPass')
 const gui = require('mnf/utils/gui')
+const keyboard = require('mnf/utils/keyboard')
 const audio = require('mnf/core/audio')
 
 class PostProcess {
@@ -40,7 +41,53 @@ class PostProcess {
 		// this.vjing.activate = false
 
 		this.createGui()
+		keyboard.down.add(this.onKey)
 		stage.onUpdate.add(this.onUpdate)
+	}
+
+	onKey = (e)=>{
+		switch(e){
+			case 49:{
+				this.bloomPass.activate = !this.bloomPass.activate
+				break
+			}
+			case 50:{//w
+				this.bloomPass2.activate = !this.bloomPass2.activate
+				break
+			}
+			case 51:{//e
+				this.glitch.cubic()
+				break
+			}
+			case 52:{//e
+				this.glitch.kick()
+				break
+			}
+			case 53:{//e
+				this.glitch.big()
+				break
+			}
+			case 54:{//e
+				this.glitch.normal()
+				break
+			}
+			case 55:{//e
+				this.cutting.cut()
+				break
+			}
+			case 56:{//e
+				this.cutting.manual()
+				break
+			}
+			case 57:{//e
+				this.vjing.params.divide4 = this.vjing.params.divide4==0?1:0
+				break
+			}
+			case 48:{//e
+				this.vjing.params.bw = this.vjing.params.bw==1?0:1
+				break
+			}
+		}
 	}
 
 	onUpdate = ()=>{
